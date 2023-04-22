@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const message = require('../utils/message');
 const response = require('../utils/response');
 const auth = require('../utils/auth');
+const { handleAWSUpload } = require("../config/s3");
 
 const { createUser, checkUserExist, updateUserData, updatePassword, showAllUser, removeUser } = require('./dbQuery');
 
@@ -158,3 +159,20 @@ exports.deleteUser = async function (req, res) {
         return res.json(response.failure(204, message.catch_error, error));
     }
 }
+/**
+* imageUpload- function to  deleteUser
+* @param {*} data
+* @param {*} res 
+* @returns 
+*/
+exports.imageUpload = async function (data, res) {
+    try {
+        for (let file of data.files) {
+            file.path = await handleAWSUpload(file);
+        }
+        return res.json(response.success(200, message.user.image, data));
+    } catch (err) {
+        console.log(err);
+        return res.json(response.failure(204, message.user.Catch_Error, err));
+    }
+};

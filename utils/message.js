@@ -17,7 +17,8 @@ module.exports = {
         user_not_exist: 'User Does Not Exists',
         active_user: 'only active user can login',
         wrong_userName_password: 'Wrong Username and Password',
-        update_password_error:"this password already have been used."
+        update_password_error:"this password already have been used.",
+        image:"image uploaded succesfuly"
     },
     catch_error: 'Something went wrong',
 };
