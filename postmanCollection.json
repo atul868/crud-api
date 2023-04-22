@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "d084f3a7-ea49-425c-9cd2-c35fd2294dbd",
+		"name": "users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23306954",
+		"_collection_link": "https://restless-equinox-316561.postman.co/workspace/My-Workspace~f8e4e485-5850-4662-8e74-2c46377408f0/collection/23306954-d084f3a7-ea49-425c-9cd2-c35fd2294dbd?source=collection_link"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\":\"atul12377\",\r\n\"password\":\"1234567\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:50111/userLogin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50111",
+					"path": [
+						"userLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"userName\":\"atul12397988\",\r\n\"password\":\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:50111/userSignup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50111",
+					"path": [
+						"userSignup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateUserProfile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcklkIjoiNjQ0MmZhNGQ5YWU3ODMxN2Y1Nzc2YmExIn0sImlhdCI6MTY4MjE0OTU3NSwiZXhwIjoxNjkwNzg5NTc1fQ.e1IsaPf2RfCi8t6ACd6qYBx8XUkE_oQcAu5mgUZ_aM8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"firstName\":\"anki singjjh chauhan\",\r\n\"lastName\":\"chauhans\",\r\n\"email\":\"ankit@gmail.com\",\r\n\"image\":\"ankit.jpg\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:50111/updateUserProfile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50111",
+					"path": [
+						"updateUserProfile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updatePassword",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcklkIjoiNjQ0MmZhNGQ5YWU3ODMxN2Y1Nzc2YmExIn0sImlhdCI6MTY4MjEzNTQ0OSwiZXhwIjoxNjkwNzc1NDQ5fQ.hLGMMpC6ZltC45BMA4jtr5QKcd8mPq1aAlzt_gXidvE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"newPassword\":\"1234567\",\r\n    \"confirmPassword\":\"12345657\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:50111/updatePassword",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50111",
+					"path": [
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "showUserList",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcklkIjoiNjQ0MmYwZjM2MWU1YTZlMzI5OWVmZjM3In0sImlhdCI6MTY4MjEwODc4MiwiZXhwIjoxNjkwNzQ4NzgyfQ.piKJ9LS9bsbG240sbP-pb7wgc8tOkzC0QKywQmyf82c",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:50111/showUserList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50111",
+					"path": [
+						"showUserList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcklkIjoiNjQ0MmZhNGQ5YWU3ODMxN2Y1Nzc2YmExIn0sImlhdCI6MTY4MjEzNTUzOCwiZXhwIjoxNjkwNzc1NTM4fQ.fnGQk3sTpJfVNqRB9y1AayYoV3gOE7EBRDP-V8if-8Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:50111/deleteUser/644263504c31d091b0d72360",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50111",
+					"path": [
+						"deleteUser",
+						"644263504c31d091b0d72360"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "imageUpload",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOnsidXNlcklkIjoiNjQ0MmZhNGQ5YWU3ODMxN2Y1Nzc2YmExIn0sImlhdCI6MTY4MjEzNTUzOCwiZXhwIjoxNjkwNzc1NTM4fQ.fnGQk3sTpJfVNqRB9y1AayYoV3gOE7EBRDP-V8if-8Y",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "",
+							"type": "file",
+							"src": "/C:/Users/atul6/OneDrive/Pictures/Screenshot (337).png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:50111/files",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "50111",
+					"path": [
+						"files"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

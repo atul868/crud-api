@@ -62,13 +62,12 @@ exports.userLogin = async function (req, res) {
 * @returns 
 */
 exports.updateUserProfile = async function (req, res) {
-
+    console.log(req.body);
     try {
         let userData;
         if (req.user[0].role == 1) {//role 1 = user
             req.body.user_id = req.user[0]._id;//auth user will take user_id from token and admin will take from req.body
             userData = req.body;
-            console.log('console.log(userData);', userData);
         }
         else { userData = req.body; }
 

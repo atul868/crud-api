@@ -33,7 +33,7 @@ const { signupFormVailidator, loginFormVailidator, updateUserProfileVailidator, 
 module.exports = (app) => {
   app.post('/userSignup', middleware(signupFormVailidator), userSignup);//user signup
   app.post('/userLogin', middleware(loginFormVailidator), userLogin);//user and admin can login with this api
-  app.put('/updateUserProfile', authCheck, middleware(updateUserProfileVailidator), hasRole([1, 2]), updateUserProfile);//user and admin can use this api for user update
+  app.put('/updateUserProfile', authCheck, middleware(updateUserProfileVailidator), hasRole([1, 2]), updateUserProfile);//user and admin can use this api for user update, for user we don't need to pass user_id req, but for admin user_id
   app.put('/updatePassword', authCheck, middleware(updatePasswordVailidator), hasRole([1, 2]), updatePassword);//user and admin can use this api for password update
   app.get('/showUserList', authCheck, hasRole([2]), getAllUser);//after admin login we can hit this api for fetching all user list
   app.delete('/deleteUser/:user_id', authCheck, hasRole([2]), deleteUser);//admin can use for user delete
