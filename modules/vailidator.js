@@ -17,6 +17,7 @@ exports.updateUserProfileVailidator = joi.object({
     image: joi.string().optional()
 });
 exports.updatePasswordVailidator = joi.object({
+    user_id:joi.string().hex().length(24).required().optional(),//when admin will update password of other user
     newPassword: joi.string().required(),
     confirmPassword: joi.string().required()
 });

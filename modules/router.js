@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage
 });
-const { userSignup, userLogin, updateUserProfile, updatePassword, getAllUser, deleteUser, imageUpload } = require('./controller')
+const { userSignup, userLogin, updateUserProfile, updatePassword,sendMail, getAllUser, deleteUser, imageUpload } = require('./controller')
 
 const { signupFormVailidator, loginFormVailidator, updateUserProfileVailidator, updatePasswordVailidator } = require('./vailidator')
 /**
@@ -37,7 +37,6 @@ module.exports = (app) => {
   app.put('/updatePassword', authCheck, middleware(updatePasswordVailidator), hasRole([1, 2]), updatePassword);//user and admin can use this api for password update
   app.get('/showUserList', authCheck, hasRole([2]), getAllUser);//after admin login we can hit this api for fetching all user list
   app.delete('/deleteUser/:user_id', authCheck, hasRole([2]), deleteUser);//admin can use for user delete
-  
   app.post("/files", upload.any(), (req, res) => {//this api i am using for uploading image on s3bucket
     let data = {
       files: req.files

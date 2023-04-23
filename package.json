@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
     "aws-sdk": "^2.1363.0",
     "axios": "^0.27.2",
     "bcrypt": "^5.1.0",
@@ -23,7 +24,9 @@
     "jsonwebtoken": "^8.5.1",
     "mongo-round": "^1.0.0",
     "mongoose": "^6.2.1",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.9.1",
+    "nodemailer-smtp-transport": "^2.7.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"

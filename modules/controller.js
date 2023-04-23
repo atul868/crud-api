@@ -4,8 +4,8 @@ const message = require('../utils/message');
 const response = require('../utils/response');
 const auth = require('../utils/auth');
 const { handleAWSUpload } = require("../config/s3");
-
-const { createUser, checkUserExist, updateUserData, updatePassword, showAllUser, removeUser } = require('./dbQuery');
+const nodemailer = require('nodemailer');
+const { createUser, checkUserExist, updateUserData, updatePassword, showAllUser, removeUser, getEmail } = require('./dbQuery');
 
 /**
 * userSignup - function to create user
@@ -41,7 +41,7 @@ exports.userLogin = async function (req, res) {
         const { userName, password } = req.body;
         const userData = await checkUserExist({ userName: userName });
         if (!userData) return res.json(response.success(200, message.user.user_not_exist));
-        if (userData.isDelete==true) return res.json(response.success(200, message.user.active_user));
+        if (userData.isDelete == true) return res.json(response.success(200, message.user.active_user));
         const result = await bcrypt.compare(password, userData.password);
         if (!result)
             return res.json(response.success(204, message.user.wrong_userName_password));
@@ -62,7 +62,6 @@ exports.userLogin = async function (req, res) {
 * @returns 
 */
 exports.updateUserProfile = async function (req, res) {
-    console.log(req.body);
     try {
         let userData;
         if (req.user[0].role == 1) {//role 1 = user
@@ -94,13 +93,29 @@ exports.updatePassword = async function (req, res) {
         if (req.user[0].role == 1) {//role 1 = user
             userId = req.user[0]._id;
         } else if (req.user[0].role == 2) {//role 2 = admin
-            userId = req.body.userId;
+            userId = req.body.user_id;
         }
         if (req.body.newPassword !== req.body.confirmPassword) {
             return res.json(response.success(201, message.user.confirmPassword));
         }
         const newPasswords = await hashPasswordUsingBcrypt(req.body.newPassword);
         const passUpdateRes = await updatePassword(userId, newPasswords, req.body.newPassword, res);
+        if (passUpdateRes && req.user[0].role == 2) {
+            let getMail= await getEmail(userId);
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'ankit63938@gmail.com',
+                    pass: 'xuoetvzlmklqofux'
+                }
+            });
+            await transporter.sendMail({
+                from: 'ankit63938@gmail.com',
+                to: `${getMail.email}`,
+                subject: 'security alert',
+                text: 'admin updated your password please change it for security'
+            });
+        }
 
         if (passUpdateRes) {
             return res.json(response.success(201, message.user.password_update));

@@ -13,6 +13,16 @@ module.exports.checkUserExist = async (data) => {
     return await user.findOne(data);
 }
 
+/**
+* getEmail- function to check get Email
+* @param {*} data
+* @returns 
+*/
+module.exports.getEmail = async (userId) => {
+    console.log('getemail');
+    return await userDeatail.findOne({user_id:userId},{email:1});
+}
+
 
 /**
 * checkEmpExist- function to check Employee Exist
